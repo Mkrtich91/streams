@@ -9,38 +9,38 @@ namespace Streams
     {
         public static StringReader CreateStringReader(string str)
         {
-            // TODO #1-1. Implement the method by returning an instantiated object of the StringReader class.
-            throw new NotImplementedException();
+            StringReader stringReader = new StringReader(str);
+            return stringReader;
         }
 
         public static StringWriter CreateStringWriter()
         {
-            // TODO #1-2. Implement the method by returning an instantiated object of the StringWriter class.
-            throw new NotImplementedException();
+            StringWriter stringWriter = new StringWriter();
+            return stringWriter;
         }
 
         public static StringWriter CreateStringWriterThatWritesToStringBuilder(StringBuilder stringBuilder)
         {
-            // TODO #1-3. Implement the method by returning an instantiated object of the StringWriter class.
-            throw new NotImplementedException();
+            StringWriter stringWriter = new StringWriter(stringBuilder);
+            return stringWriter;
         }
 
         public static StringWriter CreateStringWriterThatWritesCultureSpecificData(CultureInfo cultureInfo)
         {
-            // TODO #1-4. Implement the method by returning an instantiated object of the StringWriter class.
-            throw new NotImplementedException();
+            StringWriter stringWriter = new StringWriter(cultureInfo);
+            return stringWriter;
         }
 
         public static StreamReader CreateStreamReaderFromStream(Stream stream)
         {
-            // TODO #1-5. Implement the method by returning an instantiated object of the StreamReader class.
-            throw new NotImplementedException();
+            StreamReader streamReader = new StreamReader(stream);
+            return streamReader;
         }
 
         public static StreamWriter CreateStreamWriterToStream(Stream stream)
         {
-            // TODO #1-6. Implement the method by returning an instantiated object of the StreamWriter class.
-            throw new NotImplementedException();
+            StreamWriter streamWriter = new StreamWriter(stream);
+            return streamWriter;
         }
     }
 }

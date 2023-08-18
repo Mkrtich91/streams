@@ -4,32 +4,59 @@ namespace Streams
     {
         public static string ReadAllStreamContent(StringReader stringReader)
         {
-            // TODO #2-1. Implement the method by reading all content as a string with StringReader.ReadToEnd method.
-            throw new NotImplementedException();
+            string content = stringReader.ReadToEnd();
+            return content;
         }
 
         public static string ReadCurrentLine(StringReader stringReader)
         {
-            // TODO #2-2. Implement the method by reading a line of characters with StringReader.ReadLine method.
-            throw new NotImplementedException();
+            string? line = stringReader.ReadLine();
+#pragma warning disable CS8603
+            return line;
+#pragma warning restore CS8603
         }
 
         public static bool ReadNextCharacter(StringReader stringReader, out char currentChar)
         {
-            // TODO #2-3. Implement the method by reading the next character with StringReader.Read method.
-            throw new NotImplementedException();
+            int charValue = stringReader.Read();
+            if (charValue != -1)
+            {
+                currentChar = (char)charValue;
+                return true;
+            }
+            else
+            {
+                currentChar = ' ';
+                return false;
+            }
         }
 
         public static bool PeekNextCharacter(StringReader stringReader, out char currentChar)
         {
-            // TODO #2-4. Implement the method by returning the next available character with StringReader.Peek method.
-            throw new NotImplementedException();
+            int charValue = stringReader.Peek();
+            if (charValue != -1)
+            {
+                currentChar = (char)charValue;
+                return true;
+            }
+            else
+            {
+                currentChar = ' ';
+                return false;
+            }
         }
 
         public static char[] ReadCharactersToBuffer(StringReader stringReader, int count)
         {
-            // TODO #2-5. Implement the method by creating a new array of chars and reading a block of characters to the array.
-            throw new NotImplementedException();
+            char[] buffer = new char[count];
+            int bytesRead = stringReader.Read(buffer, 0, count);
+
+            if (bytesRead < count)
+            {
+                Array.Resize(ref buffer, bytesRead);
+            }
+
+            return buffer;
         }
     }
 }

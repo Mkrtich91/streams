@@ -6,26 +6,67 @@ namespace Streams
     {
         public static string ReadAllStreamContent(StreamReader streamReader)
         {
-            // TODO #4-1. Implement the method by reading all content as a string.
-            throw new NotImplementedException();
+            return streamReader.ReadToEnd();
         }
 
         public static string[] ReadLineByLine(StreamReader streamReader)
         {
-            // TODO #4-2. Implement the method by reading lines of characters as a string array.
-            throw new NotImplementedException();
+            List<string> lines = new List<string>();
+            string line;
+#pragma warning disable CS8600
+            while ((line = streamReader.ReadLine()) != null)
+            {
+                lines.Add(line);
+            }
+#pragma warning restore CS8600
+            return lines.ToArray();
         }
 
         public static StringBuilder ReadOnlyLettersAndNumbers(StreamReader streamReader)
         {
-            // TODO #4-3. Implement the method by reading only letters and numbers, and write the characters to a StringBuilder.
-            throw new NotImplementedException();
+            StringBuilder result = new StringBuilder();
+
+            while (streamReader.Peek() != -1)
+            {
+                char nextChar = (char)streamReader.Peek();
+
+                if (char.IsLetterOrDigit(nextChar))
+                {
+                    _ = result.Append(nextChar);
+                    _ = streamReader.Read();
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return result;
         }
 
         public static char[][] ReadAsCharArrays(StreamReader streamReader, int arraySize)
         {
-            // TODO #4-4. Implement the method by returning an underlying string that sliced into jagged array of characters according to arraySize.
-            throw new NotImplementedException();
+#pragma warning disable IDE0059
+#pragma warning disable S1854
+            char[][] charArrays = Array.Empty<char[]>();
+#pragma warning restore S1854
+#pragma warning restore IDE0059
+            string content = streamReader.ReadToEnd();
+
+            int totalArrays = (int)Math.Ceiling((double)content.Length / arraySize);
+            charArrays = new char[totalArrays][];
+
+            for (int i = 0; i < totalArrays; i++)
+            {
+                int startIndex = i * arraySize;
+                int endIndex = Math.Min(startIndex + arraySize, content.Length);
+                int arrayLength = endIndex - startIndex;
+
+                charArrays[i] = new char[arrayLength];
+                content.CopyTo(startIndex, charArrays[i], 0, arrayLength);
+            }
+
+            return charArrays;
         }
     }
 }
